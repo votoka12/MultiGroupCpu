@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "trinh_tan_dung.org.mixin",
+  "refmap": "multigroup.mixins.refmap.json",
+  "mixins": [
+
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
