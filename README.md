@@ -8,7 +8,7 @@
 
 **MultiGroupCpu** là một bản mod Minecraft sử dụng Java và thư viện JNA, được viết cho các máy tính có nhiều `CPU Group` (thường gặp ở hệ thống sử dụng nhiều CPU vật lý hoặc hệ điều hành Windows với giới hạn CPU group). Mục tiêu là gán affinity cho tiến trình Minecraft để khai thác tất cả các nhóm CPU.
 
-> ⚠️ Lưu ý: Việc gán affinity có thể **không mang lại hiệu suất rõ rệt** trong một số trường hợp. Mod không can thiệp sâu vào engine Minecraft mà chỉ thiết lập affinity tại thời điểm khởi động.
+> ⚠️ **Lưu ý:** Việc gán affinity có thể **không mang lại hiệu suất rõ rệt** trong một số trường hợp. Mod không can thiệp sâu vào engine Minecraft mà chỉ thiết lập affinity tại thời điểm khởi động.
 
 ---
 
@@ -29,25 +29,29 @@
   import com.sun.jna.platform.win32.WinNT;
 
 
-🧩 Cài đặt
+**🔧 Cơ chế hoạt động**
+Khi Minecraft khởi động, mod sẽ tự động:
+Dò số lượng nhóm CPU (GroupCount) đang tồn tại trong hệ thống.
+Lặp qua từng nhóm và thiết lập affinity mask cho tiến trình Minecraft.
+Sử dụng API native từ Windows thông qua JNA để thực hiện việc gán affinity.
+
+***Toàn bộ quá trình không yêu cầu quyền admin và diễn ra trong nền, không ảnh hưởng đến trải nghiệm người dùng.***
+
+
+**🧩 Cài đặt**
 Tải file .jar từ releases hoặc tự build từ mã nguồn.
-
 Chép file .jar vào thư mục mods trong thư mục cài đặt Minecraft của bạn.
-
 Khởi động Minecraft bằng loader NeoForge.
+Mod sẽ tự động chạy và thực hiện gán affinity cho toàn bộ nhóm CPU thông qua JNA.
 
-Mod sẽ tự động chạy và thực hiện gán affinity cho toàn bộ nhóm CPU.
+**⚠️ Lưu ý hiệu năng**
+***Mặc dù mod này thực hiện việc gán affinity cho toàn bộ CPU Group, nhưng trong thực tế có thể không mang lại hiệu suất cải thiện rõ rệt, đặc biệt là với các modpack thông thường hoặc cấu hình không bị giới hạn CPU.
+Mod chủ yếu phù hợp với các hệ thống đa CPU, đa nhóm affinity, hoặc dùng trong mục đích kiểm thử / tối ưu hóa.***
 
 
-
-📌 Ghi chú
+**📌 Ghi chú**
 Mod không có giao diện người dùng.
-
 Hoạt động tốt trên hệ điều hành Windows với hệ thống nhiều CPU group.
-
 Không yêu cầu cấu hình thêm – chạy là áp dụng.
-
 Dành cho người dùng kỹ thuật cao hoặc các hệ thống hiệu năng đặc biệt.
 
-
-> 🧪 **Lưu ý hiệu năng**: Trong hầu hết trường hợp, việc gán affinity không tạo ra sự khác biệt rõ rệt về FPS hoặc TPS trong Minecraft. Tuy nhiên, nó hữu ích với các hệ thống đặc biệt hoặc khi cần kiểm soát CPU group.
