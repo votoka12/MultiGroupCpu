@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "multigroup",
+  "version": "1.0.0",
+  "name": "MultiGroup",
+  "description": "Mod gán CPU Affinity cho tất cả CPU Group trên Windows",
+    "authors": [
+        "Trịnh Tấn Dũng"
+    ],
+      "icon":"assets/multigroup/textures/logo.png",
+  "entrypoints": {
+    "main": [
+      "trinh_tan_dung.org.MultiGroupMod"
+    ],
+    "client": [
+      "trinh_tan_dung.org.MultiGroupModClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "minecraft": "1.18.2"
+  }
+}
